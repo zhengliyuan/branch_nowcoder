@@ -9,5 +9,6 @@ import www.niuke.com.base.TreeNode;
 public class NC16 {
     public boolean isSymmetric (TreeNode root) {
         // write code here
+        return false;
     }
 }

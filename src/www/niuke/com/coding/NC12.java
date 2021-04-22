@@ -12,6 +12,6 @@ import www.niuke.com.base.TreeNode12;
  */
 public class NC12 {
     public TreeNode12 reConstructBinaryTree(int [] pre, int [] in) {
-
+        return null;
     }
 }
