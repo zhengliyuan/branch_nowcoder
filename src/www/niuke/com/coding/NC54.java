@@ -1,6 +1,7 @@
 package www.niuke.com.coding;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * 给出一个有n个元素的数组S，S中是否有元素a,b,c满足a+b+c=0？找出数组S中所有满足条件的三元组。
@@ -10,29 +11,45 @@ import java.util.ArrayList;
  */
 public class NC54 {
     public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
+        Arrays.sort(num);
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-        if(num.length == 0){
+        if(num.length == 0 || num.length<3){
             return res;
         }
         //存在的正常情况
-        for(int i =0;i<num.length;i++){
-            ArrayList<Integer> resTemp = new ArrayList<>();
-            int oneTemp = num[i];
-            for(int j=0;j<num.length;j++){
-                int twoTemp = num[j];
-                for(int k=0;k<num.length;k++){
-                    int threeTemp = num[k];
-                    if(oneTemp + twoTemp + threeTemp == 0){
-                        resTemp.add(oneTemp);
-                        resTemp.add(twoTemp);
-                        resTemp.add(threeTemp);
-                    }
-                }
+        for(int i =0;i<num.length-2;i++){
+            //过滤掉重复的
+            if(i != 0 && num[i] == num[i-1]){
+                continue;
             }
-            if(resTemp != null){
-                res.add(resTemp);
+            int left = i+1;
+            int right = num.length-1;
+            int target = -num[i];
+            while (left < right){
+                int midValue = num[left] + num[right];
+                if(midValue == target){
+                    res.add(new ArrayList<>(Arrays.asList(num[i],num[left],num[right])));
+                    while (left<right&&num[left] == num[left+1]){
+                        left++;
+                    }
+                    while (left<right && num[right] == num[right-1]){
+                        right--;
+                    }
+                    left++;
+                    right--;
+                }else if(midValue < target){
+                    left++;
+                }else {
+                    right--;
+                }
             }
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        int[] num = {0,0,0};
+        NC54 nc = new NC54();
+        nc.threeSum(num);
     }
 }

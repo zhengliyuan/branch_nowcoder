@@ -6,10 +6,10 @@ package www.niuke.com.base;
  * 单链表
  */
 public class ListNode {
-    int val;
+    public int val;
     public ListNode next = null;
 
-    ListNode(int val) {
+    public ListNode(int val) {
         this.val = val;
     }
 }
