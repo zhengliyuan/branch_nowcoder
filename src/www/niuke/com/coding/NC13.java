@@ -10,6 +10,15 @@ import www.niuke.com.base.TreeNode;
 public class NC13 {
     public int maxDepth (TreeNode root) {
         // write code here
-        return 0;
+        return postOrder(root);
+    }
+
+    public int postOrder(TreeNode root){
+        if(root == null){
+            return 0;
+        }
+        int left = 1 + postOrder(root.left);
+        int right = 1+ postOrder(root.right);
+        return left>right?left:right;
     }
 }
